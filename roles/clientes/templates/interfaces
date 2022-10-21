@@ -1,0 +1,13 @@
+source-directory /etc/network/interfaces.d
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+#Red nat sin DHCP
+#allow-hotplug {{ tarjeta1 }}
+#iface {{ tarjeta1 }} inet dhcp
+
+# Red muy aislada CON DHCP
+auto {{ tarjeta2 }}
+iface {{ tarjeta2 }} inet dhcp

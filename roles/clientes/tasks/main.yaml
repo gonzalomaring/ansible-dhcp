@@ -1,0 +1,17 @@
+- name: "Modificando /etc/network/interfaces"
+  ansible.builtin.template:
+    src: interfaces
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: "Reiniciando la máquina"
+  reboot:
+  timeot: 1
+  ignore_errors: yes
+  
+#- name: "Bajando tarjeta de red"
+#  ansible.builtin.shell: "ifdown {{ tarjeta1 }}"
+#  timeout: 1
+#  ignore_errors: yes

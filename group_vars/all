@@ -1,0 +1,18 @@
+#NUEVAS VARIABLES
+
+tarjeta1: enp1s0
+tarjeta2: enp7s0
+tarjeta3: enp8s0
+ip_cliente: 192.168.128.3
+mascara: 255.255.255.0
+ip_router: 192.168.128.2
+ip_router2: 10.0.0.1
+ip_cliente2: 10.0.0.2
+ip_red_iptables: 10.0.0.0/24
+red_privada: 10.0.0.0
+dhcp_inicio: 10.0.0.50
+dhcp_fin: 10.0.0.60
+broadcast: 10.0.0.255
+dns1: 8.8.8.8
+dns2: 8.8.4.4
+mac_cliente: 52:54:00:a6:f7:d0

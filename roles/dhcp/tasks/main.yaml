@@ -1,0 +1,15 @@
+- name: "Instalamos el servicio en caso de que no lo tengamos"
+  apt:
+    pkg: isc-dhcp-server
+
+- name: "Modificando el dhcpd.conf"
+  template:
+    src: dhcpd.conf
+    dest: /etc/dhcp/dhcpd.conf
+
+- name: "Modificando el fichero de configuración isc-dhcp-server"
+  template:
+    src: isc-dhcp-server
+    dest: /etc/default/isc-dhcp-server   
+  notify:
+  - reboot

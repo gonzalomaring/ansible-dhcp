@@ -1,0 +1,32 @@
+source-directory /etc/network/interfaces.d
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# Tarjeta puente
+allow-hotplug {{ tarjeta1 }}
+iface {{ tarjeta1 }} inet dhcp
+
+#Tarjeta red aislada SIN DHCP
+auto {{ tarjeta2 }}
+iface {{ tarjeta2 }} inet static
+      address {{ ip_router }}
+      netmask {{ mascara }}
+
+#Tarjeta red muy aislada CON DHCP
+
+auto {{ tarjeta3 }}
+iface {{ tarjeta3 }} inet static
+      address {{ ip_router2 }}
+      netmask {{ mascara }}
+      
+
+
+
+#RED 1
+up iptables -t nat -A POSTROUTING -s {{ ip_red_iptables }} -o {{ tarjeta1 }} -j MASQUERADE
+down iptables -t nat -D POSTROUTING -s {{ ip_red_iptables }} -o {{ tarjeta1 }} -j MASQUERADE
+
+up iptables -t nat -A PREROUTING -p tcp --dport 80 -i {{ tarjeta1 }} -j DNAT --to  {{ ip_cliente2 }}
+down iptables -t nat -D PREROUTING -p tcp --dport 80 -i {{ tarjeta1 }} -j DNAT --to  {{ ip_cliente2 }}
